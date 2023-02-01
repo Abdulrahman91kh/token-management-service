@@ -7,8 +7,15 @@ export const errorHanlder = (
 ) => {
 	const code = (error as CustomError).code ? parseInt(error.code) : 500;
 	const message = (error as CustomError).message ? error.message : error;
+	const { data } = (error as CustomError);
 	if (code === 500) {
 		console.error(`[ERROR: ${Date.now()}]`, error);
+	}
+	if(code === 410) {
+		res.status(code).json({
+			result: data,
+		});
+		return;
 	}
 	res.status(code).json({
 		status: "error",

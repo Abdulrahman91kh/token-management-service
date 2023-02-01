@@ -18,14 +18,12 @@ export const handler = async ({
 	fn,
 }: RouterHandlerInput) => {
 	try {
-		const {message, data} = await fn(
+		const controllerResponse = await fn(
 			{ params, query },
 			res
 		);
 		res.status(200).json({
-			message,
-			data,
-			status: "Success",
+			...controllerResponse
 		});
 	} catch (error) {
 		errorHanlder(error, res);

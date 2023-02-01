@@ -7,8 +7,8 @@ export const generateTokens = async (req: Request) => {
     const tokens = tokenServices.generateMultipleTokens(count);
     await tokenServices.saveTokens(tokens);
     return {
-        message: 'Tokens was generated successfully',
-        data: tokens
+        created: Date.now(),
+        token: tokens
     }
 };
 
@@ -18,8 +18,7 @@ export const getTokenStatus = async (req: Request) => {
     const tokenValidity = tokenServices.checkValidToken(tokenObject);
     const tokenExpired = await tokenServices.expireTokens(tokenObject, tokenValidity);
     return {
-        message: 'Token was retrieved successfully',
-        data: tokenExpired ? 'expired' : tokenObject.status
+        status: tokenExpired ? 'expired' : tokenObject.status
     };
 };
 
@@ -30,7 +29,6 @@ export const redeemToken = async (req: Request) => {
     const tokenExpired = await tokenServices.expireTokens(tokenObject, tokenValidity);
     await tokenServices.redeemToken(tokenExpired, tokenObject);
     return {
-        message: 'Token was redeemed successfully',
-        data: 'ok'
+        result: 'ok'
     };
 }
