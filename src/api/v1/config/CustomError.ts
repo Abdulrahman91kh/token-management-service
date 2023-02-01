@@ -1,3 +1,7 @@
+/**
+ * This class instances can have three main peices of data
+ * important for debugging issues (code, message, data)
+ */
 export default class CustomError extends Error {
 	/**
      * This error would introduce more capability to help debuging issues
@@ -13,4 +17,4 @@ export default class CustomError extends Error {
 		super();
 		this.message = errorMessage;
 	}
-}
+};

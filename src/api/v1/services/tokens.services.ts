@@ -1,6 +1,6 @@
 import { QueryStringParam, Token, TokenValidity } from "../../../types/Tokens.types";
 import dotenv from 'dotenv';
-import { insertToken, retrieveToken, updateTokenStatus } from "../storage/redis.model";
+import { insertToken, retrieveToken, updateTokenStatus } from "../storage/redis";
 import { checkIsTokenExpired, generateToken } from "./util";
 import CustomError from "../config/CustomError";
 import { RedisCommandRawReply } from "@redis/client/dist/lib/commands";

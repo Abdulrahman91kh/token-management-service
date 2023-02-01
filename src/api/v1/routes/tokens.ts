@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
-import { handler } from ".";
 import { getTokenStatus, generateTokens, redeemToken } from "../controllers/tokens";
+import { handler } from "./helpers";
 const router = express.Router();
 
 router.post('/', (req: Request, res: Response, next: NextFunction) => {
