@@ -6,8 +6,7 @@ client.on("error", (err) => {
 	throw new Error(err.message);
 });
 
-export const connectClient = async () => {
-	await client.connect();
-};
+export const connectClient = () => client.connect();
 
+export const closeConnection = () => client.disconnect();
 export default client;

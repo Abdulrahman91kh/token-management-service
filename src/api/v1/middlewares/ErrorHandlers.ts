@@ -1,28 +1,27 @@
 import { Request, Response, NextFunction } from 'express'
+import CustomError from '../config/CustomError';
 
 export const errorHanlder = (
-	err: any,
-	req: Request,
+	error: any, // I think there is better approach
 	res: Response,
-	next: NextFunction
 ) => {
-	// const errorNum = (err as HttpError).statusCode ? err.statusCode : 500;
-	// if (errorNum === 500) {
-	// 	console.error(`[ERROR: ${getTimeNowFormatted()}]`, err);
-	// }
-	// res.status(errorNum as number).json({
-	// 	status: "error",
-	// 	message: errorNum === 500 ? "Internal Server Error" : err,
-	// });
+	const code = (error as CustomError).code ? parseInt(error.code) : 500;
+	const message = (error as CustomError).message ? error.message : error;
+	if (code === 500) {
+		console.error(`[ERROR: ${Date.now()}]`, error);
+	}
+	res.status(code).json({
+		status: "error",
+		message: code === 500 ? "Internal Server Error" : message,
+	});
 };
 
 export const notFoundHandler = (
 	req: Request,
 	res: Response,
-	next: NextFunction
 ) => {
-	// res.status(404).json({
-	// 	status: "error",
-	// 	message: "Path Not found",
-	// });
+	res.status(404).json({
+		status: "error",
+		message: "Cannot find this Endpoint",
+	});
 };

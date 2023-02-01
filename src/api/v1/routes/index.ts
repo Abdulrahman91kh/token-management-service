@@ -1,4 +1,5 @@
 import express from "express";
+import { errorHanlder } from "../middlewares/ErrorHandlers";
 const router = express.Router();
 import tokensRoutes from './tokens';
 import { RouterHandlerInput } from "./types/RoutesTypes";
@@ -21,16 +22,13 @@ export const handler = async ({
 			{ params, query },
 			res
 		);
-        console.log(res)
-        console.log(res.status)
 		res.status(200).json({
 			message,
 			data,
 			status: "Success",
 		});
-	} catch (err) {
-        console.log(err)
-		next(err);
+	} catch (error) {
+		errorHanlder(error, res);
 	}
 };
 

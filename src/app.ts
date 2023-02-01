@@ -17,10 +17,8 @@ export default () => {
         app.use(express.urlencoded({ extended: true }));
         app.use(express.json());
         
-        //routes
         app.use("/api", routes);
         
-        app.use(errorHanlder);
         app.use(notFoundHandler);
 
         const { PORT } = process.env;
