@@ -3,6 +3,7 @@ declare global {
       interface ProcessEnv {
           PORT: string;
           EXPIRE_AFTER_DAYS: string;
+          REDIS_URL: string;
       }
     }
   }
