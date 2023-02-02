@@ -3,7 +3,7 @@ import CustomError from "../config/custom-error";
 import { RouterHandlerInput } from "./types/router";
 
 export const errorHanlder = (
-	error: any, // I think there is better approach
+	error: any,
 	res: Response,
 ) => {
 	const code = (error as CustomError).code ? parseInt(error.code) : 500;

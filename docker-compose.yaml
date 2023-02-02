@@ -2,7 +2,6 @@ version: '3'
 services:
   node-app:
     container_name: nodejs-app
-    restart: always
     build: .
     environment:
       - PORT=4001

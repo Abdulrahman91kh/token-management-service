@@ -42,7 +42,7 @@ export const saveTokens = (tokens: Token[]): Promise<RedisCommandRawReply>[] => 
  * @param token 
  */
 export const getToken = async (id: string): Promise<Token> => {
-    const token = (await retrieveToken(id) ) as unknown as Token; // I think there is better approach
+    const token = (await retrieveToken(id) ) as unknown as Token;
     if(!token.status) {
         throw new CustomError(404, 'Token is not found', id);
     }
@@ -72,6 +72,9 @@ export const checkValidToken = (token: Token): boolean => {
  * To expire tokens after a certain time of creation
  * This time can be configurable via env variables
  * @param token
+ * @param token.id time of token creation
+ * @param token.createdAt time of token creation
+ * @param token.status current status of the token
  * @param boolean  
  * @returns 
  */
@@ -86,6 +89,15 @@ export const expireTokens = async (token: Token, isValid: boolean) => {
    return true;
 };
 
+/**
+ * To redeam a token and update its status to 'redeemed'
+ * @param token
+ * @param token.id time of token creation
+ * @param token.createdAt time of token creation
+ * @param token.status current status of the token
+ * @param boolean  
+ * @returns 
+ */
 export const redeemToken = async (token: Token, tokenExpired: boolean): Promise<void> => {
     let { status } = token;
     if(tokenExpired || status !== 'available') {

@@ -2,7 +2,7 @@ import { QueryStringParam } from "../../../types/tokens";
 import * as tokenServices from "../services";
 
 /**
- * 
+ * Handles the generate tokens request and reply with generated tokens
  * @param count 
  * @returns 
  */
@@ -16,7 +16,7 @@ export const generateTokens = async (count: QueryStringParam) => {
 };
 
 /**
- * 
+ * Get a specific token status by getting the token by id
  * @param id 
  * @returns 
  */
@@ -30,7 +30,7 @@ export const getTokenStatus = async (id: string) => {
 };
 
 /**
- * 
+ * Updates token status to redeemed
  * @param id 
  * @returns 
  */
