@@ -1,4 +1,4 @@
-import { handler } from '../';
+import { handler } from '../helpers';
 
 const mockResJson = jest.fn();
 const mockResStatus = jest.fn(()=> {

@@ -1,0 +1,346 @@
+{
+	"info": {
+		"_postman_id": "710bc18a-e09b-4e5f-b7e4-b5c6e92fc2a3",
+		"name": "token-manangement-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20223151"
+	},
+	"item": [
+		{
+			"name": "Generate Tokens",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/generate/?tokens=5",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"generate",
+						""
+					],
+					"query": [
+						{
+							"key": "tokens",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Generate Tokens | Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/generate?tokens=5",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"generate"
+							],
+							"query": [
+								{
+									"key": "tokens",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "230"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e6-kyyKpjSYwVtMT9/BawRpL8zocZg\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Feb 2023 02:23:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"created\": 1675304633585,\n    \"token\": [\n        \"98d4f7f2-1ef2-4381-a741-d5e7c2fcdfc4\",\n        \"e1ef8c6e-2119-4a05-bb47-70cdab40319a\",\n        \"a21c96cd-1940-4f45-b6c0-c1055505cedd\",\n        \"3dafed25-dbd7-4dcb-886d-6e3db0d5b19a\",\n        \"c30428fc-4c11-4ced-a876-70ed46644b8d\"\n    ]\n}"
+				},
+				{
+					"name": "Generate Tokens | Error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/generate/?tokens=wrongCount",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"generate",
+								""
+							],
+							"query": [
+								{
+									"key": "tokens",
+									"value": "wrongCount"
+								}
+							]
+						}
+					},
+					"status": "Unprocessable Entity",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "101"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"65-s/9q0NVYy4CrUs3nsnknamwpGwY\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Feb 2023 02:24:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"message\": \"Not valid tokens count in the query string \\\"?tokens=<NUMERIC_VALUE>\\\"\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Check Token Validity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/check/d5885d90-b6fb-46f6-b5e3-644327ffcb14",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"check",
+						"d5885d90-b6fb-46f6-b5e3-644327ffcb14"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Check Token Validity | Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/check/d5885d90-b6fb-46f6-b5e3-644327ffcb14",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"check",
+								"d5885d90-b6fb-46f6-b5e3-644327ffcb14"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "20"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"14-aTVWDJsk8jfeEohEmCpaujWHvH8\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Feb 2023 02:37:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"expired\"\n}"
+				},
+				{
+					"name": "Check Token Validity | Error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/check/d5885d90-b6fb-46f6-b5e3-644327ffcb12",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"check",
+								"d5885d90-b6fb-46f6-b5e3-644327ffcb12"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-MLCoKYvS/8f+DY0YmJQdIFpysg0\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Feb 2023 02:37:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"error\",\n    \"message\": \"Token is not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Redeem Token",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/api/tokens/redeem/513a5be7-443c-4f72-bc0d-84cac8db0ac2",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"tokens",
+						"redeem",
+						"513a5be7-443c-4f72-bc0d-84cac8db0ac2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Redeem Token | Success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/redeem/024fabb2-a2eb-4c0f-b665-eff2ad47eb9e",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"redeem",
+								"024fabb2-a2eb-4c0f-b665-eff2ad47eb9e"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "15"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f-51rzdr5zfwWQpf+iUepheZg7siQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 02 Feb 2023 02:38:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": \"ok\"\n}"
+				}
+			]
+		}
+	]
+}

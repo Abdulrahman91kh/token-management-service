@@ -1,20 +1,20 @@
-import { Token, TokenStatus } from "../../../types/Tokens.types";
+import { Token, TokenStatus } from "../../../types/tokens";
 import Client from "../config/redis";
 
-export const insertToken =  ({token, createdAt, status}: Token) => Client.sendCommand([
+export const insertToken =  ({id, createdAt, status}: Token) => Client.sendCommand([
 	"HSET",
-	`${token}`,
+	`${id}`,
 	"createdAt",
 	`${createdAt}`,
 	"status",
 	`${status}`,
 ]);
 
-export const retrieveToken = (token: string) =>  Client.HGETALL(`${token}`);
+export const retrieveToken = <T> (id: string) =>  Client.HGETALL(`${id}`);
 
-export const updateTokenStatus = ({token, createdAt}: Token, newStatus: TokenStatus) =>  Client.sendCommand([
+export const updateTokenStatus = ({id, createdAt}: Token, newStatus: TokenStatus) =>  Client.sendCommand([
 	"HSET",
-	`${token}`,
+	`${id}`,
 	"createdAt",
 	`${createdAt}`,
 	"status",
