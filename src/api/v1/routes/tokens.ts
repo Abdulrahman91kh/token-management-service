@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
-import { getTokenStatus, generateTokens, redeemToken } from "../controllers/tokens";
+import { getTokenStatus, generateTokens, redeemToken } from "../controllers";
 import { handler } from "./helpers";
 const router = express.Router();
 

@@ -1,11 +1,8 @@
 import { GetTokensResponse, QueryStringParam, Token } from "../../../types/tokens";
-import dotenv from 'dotenv';
 import { insertToken, retrieveToken, updateTokenStatus } from "../storage/redis";
-import { checkIsAvailable, checkIsTokenExpired, generateToken } from "./util";
+import { checkIsAvailable, checkIsTokenExpired, generateToken } from "./utils";
 import CustomError from "../config/custom-error";
 import { RedisCommandRawReply } from "@redis/client/dist/lib/commands";
-dotenv.config();
-
 
 /**
  * Generates a specific number of tokens
@@ -89,7 +86,7 @@ export const expireTokens = async (token: Token, isValid: boolean) => {
    return true;
 };
 
-export const redeemToken = async (tokenExpired: boolean, token: Token): Promise<void> => {
+export const redeemToken = async (token: Token, tokenExpired: boolean): Promise<void> => {
     let { status } = token;
     if(tokenExpired || status !== 'available') {
         status = tokenExpired ? 'expired' : status;

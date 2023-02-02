@@ -17,15 +17,14 @@ export const handleCloseConnections = (app: Express): void => {
 };
 
 /**
- * This funciton will start the express server
- * and add all the requried middleware
+ * This function will start the express server
+ * and add all the required middleware
  * @returns 
  */
 export default (): Promise<void> => {
     return new Promise((resolve) => {
 
         const app = express() as Express;
-        
         app.use(express.urlencoded({ extended: true }));
         app.use(express.json());
         
