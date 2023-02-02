@@ -6,7 +6,7 @@ services:
     build: .
     environment:
       - PORT=4001
-      - EXPIRE_AFTER_DAYS=10
+      - TTL_IN_DAYS=10
       - REDIS_URL=redis://cache:6379
     ports: 
       - '4001:4001'

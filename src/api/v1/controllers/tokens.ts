@@ -1,33 +1,31 @@
 import { Request } from "express";
-import * as tokenServices from "../services/tokens.services";
+import { QueryStringParam } from "../../../types/tokens";
+import * as tokenServices from "../services";
 
 
-export const generateTokens = async (req: Request) => {
-    const count = req.query.tokens;
-    const tokens = tokenServices.generateMultipleTokens(count);
+export const generateTokens = async (count: QueryStringParam) => {
+    const {tokens, ids} = tokenServices.generateTokens(count);
     await tokenServices.saveTokens(tokens);
     return {
         created: Date.now(),
-        token: tokens
-    }
-};
-
-export const getTokenStatus = async (req: Request) => {
-    const { token } = req.params;
-    const tokenObject = await tokenServices.getToken(String(token));
-    const tokenValidity = tokenServices.checkValidToken(tokenObject);
-    const tokenExpired = await tokenServices.expireTokens(tokenObject, tokenValidity);
-    return {
-        status: tokenExpired ? 'expired' : tokenObject.status
+        token: ids,
     };
 };
 
-export const redeemToken = async (req: Request) => {
-    const { token } = req.params;
-    const tokenObject = await tokenServices.getToken(String(token));
-    const tokenValidity = tokenServices.checkValidToken(tokenObject);
-    const tokenExpired = await tokenServices.expireTokens(tokenObject, tokenValidity);
-    await tokenServices.redeemToken(tokenExpired, tokenObject);
+export const getTokenStatus = async (id: string) => {
+    const token = await tokenServices.getToken(String(id));
+    const isValid = tokenServices.checkValidToken(token);
+    const tokenExpired = await tokenServices.expireTokens(token, isValid);
+    return {
+        status: tokenExpired ? 'expired' : token.status
+    };
+};
+
+export const redeemToken = async (id: string) => {
+    const token = await tokenServices.getToken(String(id));
+    const tokenValidity = tokenServices.checkValidToken(token);
+    const tokenExpired = await tokenServices.expireTokens(token, tokenValidity);
+    await tokenServices.redeemToken(tokenExpired, token);
     return {
         result: 'ok'
     };

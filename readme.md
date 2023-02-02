@@ -1,6 +1,6 @@
 # Token Management Service
 ## Summary
-- This service manages tokens that can be used between Fabacus systems. By token management we mean 
+- This service manages tokens that can be used between the existing systems. By token management we mean 
   1. Tokens Generation
   2. Checking a Token Status
   3. Redeeming a Token
@@ -14,6 +14,11 @@
 
 
 ## Solution Approach
+- This service is following layered functional programming approach. To handle user's requests the following layers are used sequentially:
+  1. Router (responsible for assigning middleware and a controller to handle the request).
+  2. Controller (responsible for handling requests inputs and data between services and dispatching services).
+  3. Services (responsible for the business logic and throwing errors).
+  4. Storage (responsible for caching data into redis).
 ## Improvements
 1. User infrastructure as a code such as (CDK).
 2. Use better logger library such as (Pino) to generate better logs.

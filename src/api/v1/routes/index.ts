@@ -2,6 +2,6 @@ import express from "express";
 const router = express.Router();
 import tokensRoutes from './tokens';
 
-router.use('/tokens', tokensRoutes);
+router.use('/', tokensRoutes);
 
-export default router
+export default router;

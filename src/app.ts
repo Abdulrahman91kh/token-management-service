@@ -1,6 +1,6 @@
 import express, { Express } from "express";
 import * as dotenv from 'dotenv';
-import { notFoundHandler } from "./api/v1/middlewares/ErrorHandlers";
+import { notFoundHandler } from "./api/v1/middleware/error-handlers";
 import routes from "./api/v1/routes";
 import * as Redis from "./api/v1/config/redis";
 dotenv.config();
@@ -29,7 +29,7 @@ export default (): Promise<void> => {
         app.use(express.urlencoded({ extended: true }));
         app.use(express.json());
         
-        app.use("/api", routes);
+        app.use("/", routes);
         
         app.use(notFoundHandler);
 

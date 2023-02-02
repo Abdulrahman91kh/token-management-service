@@ -1,16 +1,15 @@
-import { Token } from "../../../types/Tokens.types";
+import { Token } from "../../../types/tokens";
 import { v4 as uuid } from 'uuid';
 
 /**
  * Checks token expiry against number of days
- * @param tokenTimeStamp 
+ * @param tokenTime 
  * @param expiryAfterDays 
  * @returns boolean
  */
-export const checkIsTokenExpired = (tokenTimeStamp: number, expiryAfterDays: number): boolean => {
-    const tokenDate = new Date(tokenTimeStamp)
-    tokenDate.setDate(tokenDate.getDate() + expiryAfterDays);
-    return tokenDate.getTime() < Date.now();
+export const checkIsTokenExpired = (tokenTime: number, ttlDays: number): boolean => {
+    const DAYS = 60 * 60 * 24 * 1000;
+    return tokenTime + DAYS * ttlDays < Date.now();
 };
 
 /**
@@ -19,6 +18,8 @@ export const checkIsTokenExpired = (tokenTimeStamp: number, expiryAfterDays: num
  */
 export const generateToken = (): Token => ({
     createdAt: Date.now(),
-    token: uuid(),
+    id: uuid(),
     status: 'available'
 });
+
+export const checkIsAvailable = (token: Token): boolean => token.status === 'available';

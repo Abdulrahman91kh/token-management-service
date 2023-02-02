@@ -3,24 +3,24 @@ import { getTokenStatus, generateTokens, redeemToken } from "../controllers/toke
 import { handler } from "./helpers";
 const router = express.Router();
 
-router.post('/', (req: Request, res: Response, next: NextFunction) => {
+router.post('/generate', (req: Request, res: Response, next: NextFunction) => {
     handler({
         req, res, next, 
-        fn: () => generateTokens(req)
+        fn: () => generateTokens(req.query.tokens)
     });
 });
 
-router.get('/:token', (req: Request, res: Response, next: NextFunction) => {
+router.get('/check/:id', (req: Request, res: Response, next: NextFunction) => {
     handler({
         req, res, next, 
-        fn: () => getTokenStatus(req)
+        fn: () => getTokenStatus(req.params.id)
     });
 });
 
-router.put('/redeem/:token', (req: Request, res: Response, next: NextFunction) => {
+router.put('/redeem/:id', (req: Request, res: Response, next: NextFunction) => {
     handler({
         req, res, next, 
-        fn: () => redeemToken(req)
+        fn: () => redeemToken(req.params.id)
     });
 });
 

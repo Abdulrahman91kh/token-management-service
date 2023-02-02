@@ -2,7 +2,7 @@ declare global {
     namespace NodeJS {
       interface ProcessEnv {
           PORT: string;
-          EXPIRE_AFTER_DAYS: string;
+          TTL_IN_DAYS: string;
           REDIS_URL: string;
       }
     }
