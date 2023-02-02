@@ -5,11 +5,11 @@ describe('Testing Controller File', () => {
     it('Should test generateTokens calling services and return formatted response', async () => {
         const mockCount = "2" as any;
         const mockGenerateTokens = jest.spyOn(tokenServices, 'generateTokens').mockReturnValueOnce({tokens: [{id: 'testing-id'}], ids: ['testing-id']} as any);
-        const mockSaveTokens = jest.spyOn(tokenServices, 'saveTokens').mockReturnValueOnce({} as any);
+        const mockSaveTokens = jest.spyOn(tokenServices, 'saveTokens').mockReturnValueOnce([Promise.resolve()] as any);
         const results = await generateTokens(mockCount);
         expect(mockGenerateTokens).toBeCalledWith("2");
         expect(mockSaveTokens).toBeCalledWith([{id: 'testing-id'}]);
-        expect(typeof results.created).toBe('number');
+        expect(typeof results.created).toBe('string');
         expect(results.token).toEqual(expect.arrayContaining(['testing-id']));
     });
     it('Should test getTokenStatus calling services and return available', async () => {

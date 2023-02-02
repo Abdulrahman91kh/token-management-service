@@ -8,9 +8,9 @@ import * as tokenServices from "../services";
  */
 export const generateTokens = async (count: QueryStringParam) => {
     const {tokens, ids} = tokenServices.generateTokens(count);
-    await tokenServices.saveTokens(tokens);
+    await Promise.all(tokenServices.saveTokens(tokens));
     return {
-        created: Date.now(),
+        created: new Date().toISOString(),
         token: ids,
     };
 };
