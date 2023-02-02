@@ -43,7 +43,7 @@
   2. Controller (responsible for handling requests inputs and data between services and dispatching services).
   3. Services (responsible for the business logic and throwing errors).
   4. Storage (responsible for caching data into redis).
-## Suggestions for 
+## Suggestions for enhancement
 1. User infrastructure as a code such as (CDK).
 2. Use better logger library such as ([Pino](https://www.npmjs.com/package/pino)) to generate better logs that can help to fix issues.
 3. Unify all the API responses scheme.
